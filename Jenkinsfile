@@ -9,26 +9,10 @@ pipeline {
 			    }
 		    }         
             steps {
-                sh 'cd scs-demo-esi-order/ && mvn -B -DskipTests clean package site'
+                sh 'cd scs-demo-esi-order/ && mvn -B clean package site'
                 archiveArtifacts 'scs-demo-esi-order/target/*.jar'
                 archiveArtifacts 'scs-demo-esi-order/target/site/**'
                 stash includes: 'scs-demo-esi-order/target/*.jar', name: 'jar'
-            }
-        }
-        stage('Test') {
-		    agent {
-		        docker {
-		            image 'maven:3-alpine'
-		            args '-v /root/.m2:/root/.m2'
-			    }
-		    }           
-            steps {
-                sh 'cd scs-demo-esi-order/ && mvn test'
-            }
-            post {
-                always {
-                  junit 'scs-demo-esi-order/target/surefire-reports/*.xml'
-                }
             }
         }
         stage('Build Images') { 
