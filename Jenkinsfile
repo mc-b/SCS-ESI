@@ -9,7 +9,7 @@ pipeline {
 			    }
 		    }         
             steps {
-                sh 'cd scs-demo-esi-order/ && mvn -B -DskipTests clean package site'
+                sh 'cd scs-demo-esi-order/ && mvn -B -DskipTests clean package'
                 archiveArtifacts 'scs-demo-esi-order/target/*.jar'
                 stash includes: 'scs-demo-esi-order/target/*.jar', name: 'jar'
             }
@@ -30,6 +30,12 @@ pipeline {
                 }
             }
         }
+	    stage ('Analysis') {
+	        sh 'cd scs-demo-esi-order/ && mvn -batch-mode -V -U -e checkstyle:checkstyle'
+	 
+	        def checkstyle = scanForIssues tool: [$class: 'CheckStyle'], pattern: '**/target/checkstyle-result.xml'
+	        publishIssues issues:[checkstyle]
+	    }        
         stage('Build Images') { 
         	agent any
             steps {
