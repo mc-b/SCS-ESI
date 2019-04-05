@@ -36,12 +36,12 @@ pipeline {
 		            image 'maven:3-alpine'
 		            args '-v /root/.m2:/root/.m2'
 			    }
+			}
             steps {			    	    
 			        sh 'cd scs-demo-esi-order/ && mvn -batch-mode -V -U -e checkstyle:checkstyle'
 			 
 			        def checkstyle = scanForIssues tool: [$class: 'CheckStyle'], pattern: '**/target/checkstyle-result.xml'
 			        publishIssues issues:[checkstyle]
-				}
 			}
 	    }        
         stage('Build Images') { 
