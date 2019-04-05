@@ -9,8 +9,9 @@ pipeline {
 			    }
 		    }         
             steps {
-                sh 'cd scs-demo-esi-order/ && mvn -B -DskipTests clean package'
+                sh 'cd scs-demo-esi-order/ && mvn -B -DskipTests clean package site'
                 archiveArtifacts 'scs-demo-esi-order/target/*.jar'
+                archiveArtifacts 'scs-demo-esi-order/target/site/**'
                 stash includes: 'scs-demo-esi-order/target/*.jar', name: 'jar'
             }
         }
@@ -30,20 +31,6 @@ pipeline {
                 }
             }
         }
-	    stage ('Analysis') {
-		    agent {
-		        docker {
-		            image 'maven:3-alpine'
-		            args '-v /root/.m2:/root/.m2'
-			    }
-			}
-            steps {			    	    
-			        sh 'cd scs-demo-esi-order/ && mvn -batch-mode -V -U -e checkstyle:checkstyle'
-			 
-			        def checkstyle = scanForIssues tool: [$class: 'CheckStyle'], pattern: '**/target/checkstyle-result.xml'
-			        publishIssues issues:[checkstyle]
-			}
-	    }        
         stage('Build Images') { 
         	agent any
             steps {
