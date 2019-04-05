@@ -61,4 +61,57 @@
 		</plugins>
 	</build>
 
+	<reporting>
+		<plugins>
+			<!-- Checkstyle - fehlende Kommentare etc. (Ziel: checkstyle:checkstyle) -> Ergebnis: target/mvn/site -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<version>2.17</version>
+				<reportSets>
+					<reportSet>
+						<reports>
+							<report>checkstyle</report>
+						</reports>
+					</reportSet>
+				</reportSets>
+			</plugin>
+			<!-- jxr - Erzeugt eine Source Crossreferenz (Ziel: jxr:jxr) -->				
+			<plugin>
+			  <groupId>org.apache.maven.plugins</groupId>
+			  <artifactId>maven-jxr-plugin</artifactId>
+			  <version>3.0.0</version>
+			</plugin>
+			<!-- Tags wie TODO, FIXME etc. zaehlen - (mvn site)  -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>taglist-maven-plugin</artifactId>
+				<version>2.4</version>
+				<configuration>
+					<tags>
+						<tag>TODO</tag>
+						<tag>FIXME</tag>
+					</tags>
+				</configuration>
+			</plugin>	
+			<!-- Auswertung von JUnit Tests -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-report-plugin</artifactId>
+				<version>3.0.0-M3</version>
+				<configuration>
+					<includes>
+						<include>**/*Test.java</include>
+						<include>**/*TestCase.java</include>
+					</includes>
+				</configuration>
+			</plugin>
+	        <plugin>
+	            <groupId>org.apache.maven.plugins</groupId>
+	            <artifactId>maven-project-info-reports-plugin</artifactId>
+	            <version>2.8</version>
+	        </plugin>									
+		</plugins>
+	</reporting>
+	
 </project>

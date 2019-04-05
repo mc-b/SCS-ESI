@@ -9,7 +9,7 @@ pipeline {
 			    }
 		    }         
             steps {
-                sh 'cd scs-demo-esi-order/ && mvn -B -DskipTests clean package'
+                sh 'cd scs-demo-esi-order/ && mvn -B -DskipTests clean package site'
                 archiveArtifacts 'scs-demo-esi-order/target/*.jar'
                 stash includes: 'scs-demo-esi-order/target/*.jar', name: 'jar'
             }
