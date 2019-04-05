@@ -41,6 +41,7 @@ pipeline {
 			 
 			        def checkstyle = scanForIssues tool: [$class: 'CheckStyle'], pattern: '**/target/checkstyle-result.xml'
 			        publishIssues issues:[checkstyle]
+				}
 			}
 	    }        
         stage('Build Images') { 
