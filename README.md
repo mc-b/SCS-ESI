@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/mc-b/SCS-ESI.svg?branch=master)](https://travis-ci.org/mc-b/SCS-ESI)
+
 SCS ESI Sample
 ==============
 
