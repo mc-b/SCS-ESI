@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/mc-b/SCS-ESI.svg?branch=master)](https://travis-ci.org/mc-b/SCS-ESI) [![Coverage Status](https://coveralls.io/repos/github/mc-b/SCS-ESI/badge.svg)](https://coveralls.io/github/mc-b/SCS-ESI)
+[![Build Status](https://travis-ci.org/mc-b/SCS-ESI.svg?branch=master)](https://travis-ci.org/mc-b/SCS-ESI) [![Coverage Status](https://coveralls.io/repos/github/mc-b/SCS-ESI/badge.svg)](https://coveralls.io/github/mc-b/SCS-ESI) [![CodeFactor](https://www.codefactor.io/repository/github/mc-b/scs-esi/badge)](https://www.codefactor.io/repository/github/mc-b/scs-esi)
 
 SCS ESI Sample
 ==============
