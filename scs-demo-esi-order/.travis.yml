@@ -1,3 +1,3 @@
 language: java
 script:
- - mvn -B clean package site
+ - cd scs-demo-esi-order/ && mvn -B clean package site
