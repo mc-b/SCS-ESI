@@ -1,3 +1,5 @@
 language: java
 script:
  - cd scs-demo-esi-order/ && mvn -B clean package site
+after_success:
+  - cd scs-demo-esi-order/ && mvn clean cobertura:cobertura coveralls:report 
